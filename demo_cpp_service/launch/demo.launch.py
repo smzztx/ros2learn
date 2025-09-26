@@ -1,5 +1,8 @@
+# import os
+# os.environ['RCUTILS_COLORIZED_OUTPUT'] = '1'
 import launch
 import launch_ros
+from launch.actions import SetEnvironmentVariable
 
 def generate_launch_description():
     action_declare_arg_max_spped = launch.actions.DeclareLaunchArgument('launch_max_speed', default_value='2.0')
@@ -23,9 +26,10 @@ def generate_launch_description():
     )
    # 合成启动描述并返回
     launch_description = launch.LaunchDescription([
+        SetEnvironmentVariable(name='RCUTILS_COLORIZED_OUTPUT', value='1'),
         action_declare_arg_max_spped,
         action_node_turtle_control,
         action_node_patrol_client,
-        action_node_turtlesim_node
+        action_node_turtlesim_node,
     ])
     return launch_description

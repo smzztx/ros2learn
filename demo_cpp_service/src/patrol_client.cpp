@@ -41,7 +41,7 @@ public:
                     RCLCPP_ERROR(this->get_logger(), "Patrol error!!!");
                 }
             });
-        RCLCPP_WARN(this->get_logger(), "111");
+        // RCLCPP_WARN(this->get_logger(), "111");
     }
 
     std::shared_ptr<SetP::Response> call_set_parameters(rcl_interfaces::msg::Parameter& parameter){
