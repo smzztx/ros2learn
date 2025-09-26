@@ -5,14 +5,14 @@ import launch_ros
 from launch.actions import SetEnvironmentVariable
 
 def generate_launch_description():
-    action_declare_arg_max_spped = launch.actions.DeclareLaunchArgument('launch_max_speed', default_value='2.0')
+    action_declare_arg_max_spped = launch.actions.DeclareLaunchArgument('launch_max_speed', default_value='1.9', description='max speed of turtle')
 
     action_node_turtle_control = launch_ros.actions.Node(
         package='demo_cpp_service',
         executable='turtle_control',
         output='screen',
         parameters=[{'max_speed': launch.substitutions.LaunchConfiguration(
-  'launch_max_speed', default='2.0')}]
+  'launch_max_speed', default='1.9')}]
     )
     action_node_patrol_client = launch_ros.actions.Node(
         package='demo_cpp_service',
