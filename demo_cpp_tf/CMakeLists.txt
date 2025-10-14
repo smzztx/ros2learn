@@ -10,8 +10,22 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
-find_package(geometry REQUIRED)
+find_package(geometry_msgs REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+
+add_executable(static_tf_publisher src/static_tf_broadcaster.cpp)
+ament_target_dependencies(static_tf_publisher rclcpp tf2 tf2_ros geometry_msgs tf2_geometry_msgs)
+
+add_executable(dynamic_tf_publisher src/dynamic_tf_broadcaster.cpp)
+ament_target_dependencies(dynamic_tf_publisher rclcpp tf2 tf2_ros geometry_msgs tf2_geometry_msgs)
+
+add_executable(tf_listener src/tf_listener.cpp)
+ament_target_dependencies(tf_listener rclcpp tf2 tf2_ros geometry_msgs tf2_geometry_msgs)
+
+install(TARGETS
+  static_tf_publisher dynamic_tf_publisher tf_listener
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 install(DIRECTORY launch
   DESTINATION share/${PROJECT_NAME}/
